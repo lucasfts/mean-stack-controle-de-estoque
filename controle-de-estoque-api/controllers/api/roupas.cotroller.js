@@ -1,48 +1,23 @@
 var config = require('config.json');
 var express = require('express');
 var router = express.Router();
-var userService = require('services/roupa.service');
+var roupaService = require('services/roupa.service');
 
 // routes
-router.get('/', registerUser);
-router.get('/:_id', getCurrentUser);
-router.post('/', registerUser);
-router.put('/:_id', updateUser);
-router.delete('/:_id', deleteUser);
+router.get('/', getAll);
+router.get('/:_id', getById);
+router.post('/', insert);
+router.put('/:_id', update);
+router.delete('/:_id', _delete);
 
 module.exports = router;
 
-function authenticateUser(req, res) {
-    userService.authenticate(req.body.username, req.body.password)
-        .then(function (response) {
-            if (response) {
-                // authentication successful
-                res.send({ userId: response.userId, token: response.token });
-            } else {
-                // authentication failed
-                res.status(401).send('Username or password is incorrect');
-            }
-        })
-        .catch(function (err) {
-            res.status(400).send(err);
-        });
-}
 
-function registerUser(req, res) {
-    userService.create(req.body)
-        .then(function () {
-            res.sendStatus(200);
-        })
-        .catch(function (err) {
-            res.status(400).send(err);
-        });
-}
-
-function getCurrentUser(req, res) {
-    userService.getById(req.params._id)
-        .then(function (user) {
-            if (user) {
-                res.send(user);
+function getAll(req, res) {
+    roupaService.getAll()
+        .then(function (roupas) {
+            if (roupas) {
+                res.send(roupas);
             } else {
                 res.sendStatus(404);
             }
@@ -52,8 +27,22 @@ function getCurrentUser(req, res) {
         });
 }
 
-function updateUser(req, res) {
-    userService.update(req.params._id, req.body)
+function getById(req, res) {
+    roupaService.getById(req.params._id)
+        .then(function (roupa) {
+            if (roupa) {
+                res.send(roupa);
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function insert(req, res) {
+    roupaService.create(req.body)
         .then(function () {
             res.sendStatus(200);
         })
@@ -62,8 +51,18 @@ function updateUser(req, res) {
         });
 }
 
-function deleteUser(req, res) {
-    userService.delete(req.params._id)
+function update(req, res) {
+    roupaService.update(req.params._id, req.body)
+        .then(function () {
+            res.sendStatus(200);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function _delete(req, res) {
+    roupaService.delete(req.params._id)
         .then(function () {
             res.sendStatus(200);
         })
