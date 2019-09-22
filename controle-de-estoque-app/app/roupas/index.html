@@ -1,15 +1,89 @@
 <div class="row">
     <div class="col-sm-12 mb-20">
-        <button class="btn btn-primary">Adicionar Item</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalNovoItem">Adicionar Item</button>
     </div>
     <div class="col-sm-8">
         <div class="form-group">
             <div class="input-group">
                 <input type="email" class="form-control" placeholder="Pesquisar por nome" id="email">
                 <span class="input-group-btn">
-                <button class="btn">Pesquisar</button>
+                    <button class="btn">Pesquisar</button>
                 </span>
             </div>
         </div>
     </div>
+</div>
+
+<div class="modal fade" role="dialog" id="modalNovoItem">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Adicionar Item</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="codigo">Código</label>
+                        <input type="text" id="codigo" class="form-control" ng-model="vm.roupa.codigo" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="dataEntrada">Data de Entrada</label>
+                        <input type="date" id="dataEntrada" class="form-control" ng-model="vm.roupa.dataEntrada"
+                            required />
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo">Tipo</label>
+                        <select name="tipo" id="tipo" class="form-control" ng-model="vm.roupa.tipo">
+                            <option value="0">Selecione...</option>
+                            <option value="1">Vestido</option>
+                            <option value="2">Saia</option>
+                            <option value="3">Conjunto</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="marca">Marca</label>
+                        <select name="marca" id="marca" class="form-control" ng-model="vm.roupa.marca">
+                            <option value="0">Selecione...</option>
+                            <option value="1">Fórum</option>
+                            <option value="2">Namine</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tamanho">Tamanho</label>
+                        <input type="text" id="tamanho" class="form-control" ng-model="vm.roupa.tamanho" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="cor">Cor</label>
+                        <input type="color" id="cor" class="form-control" ng-model="vm.roupa.cor" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="valorEtiqueta">Valor de etiqueta na compra</label>
+                        <input type="text" id="valorEtiqueta" class="form-control" ng-model="vm.roupa.valorEtiqueta"
+                            required />
+                    </div>
+                    <div class="form-group">
+                        <label for="valorPago">Valor pago na compra</label>
+                        <input type="text" id="valorPago" class="form-control" ng-model="vm.roupa.valorPago" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="valorMargem">Valor para margem de 100% </label>
+                        <input type="text" id="valorMargem" class="form-control" ng-model="vm.roupa.valorMargem"
+                            required />
+                    </div>
+                    <div class="form-group">
+                            <label for="precoSugerido">Preço sugerido</label>
+                            <input type="text" id="precoSugerido" class="form-control" ng-model="vm.roupa.precoSugerido" required />
+                        </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+
 </div>
