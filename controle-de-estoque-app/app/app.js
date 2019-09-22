@@ -18,6 +18,13 @@
                 controllerAs: 'vm',
                 data: { activeTab: 'home' }
             })
+            .state('roupas', {
+                url: '/roupas',
+                templateUrl: 'roupas/index.html',
+                controller: 'Roupas.IndexController',
+                controllerAs: 'vm',
+                data: { activeTab: 'roupas' }
+            })
             .state('account', {
                 url: '/account',
                 templateUrl: 'account/index.html',
