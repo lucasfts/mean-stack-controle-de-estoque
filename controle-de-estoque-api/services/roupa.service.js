@@ -102,6 +102,7 @@ function update(_id, roupaParam) {
     function updateRoupa() {
         // fields to update
         var set = {
+            nome: roupaParam.nome,
             dataEntrada: roupaParam.dataEntrada,
             tipo: roupaParam.tipo,
             marca: roupaParam.marca,

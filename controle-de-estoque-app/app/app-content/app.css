@@ -1,6 +1,9 @@
 ﻿.flash-message {
     margin-top: 20px;
 }
+span.ng-invalid{
+    border: 1px solid red;
+}
 .float-none{
     float: none;
 }
