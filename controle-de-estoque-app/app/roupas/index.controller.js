@@ -18,6 +18,9 @@
         vm.deleteRoupa = deleteRoupa;
         vm.editRoupa = editRoupa;
         vm.addRoupa = addRoupa;
+        vm.searchRoupas = searchRoupas;
+
+        vm.searchTerm = "";
 
         initUser();
         getRoupas();
@@ -31,7 +34,14 @@
             });
         }
 
+        function searchRoupas(){
+            RoupaService.GetAll().then(function (roupas) {
+                vm.roupas = roupas.filter(contaisTerm);
+            });
+        }
+
         function getRoupas() {
+            vm.searchTerm = "";
             // get current user data in the API
             RoupaService.GetAll().then(function (roupas) {
                 vm.roupas = roupas;
@@ -39,7 +49,7 @@
         }
 
         function saveRoupa() {
-            if(vm.roupa._id && vm.roupa._id > 0){
+            if(vm.roupa._id){
                 RoupaService.Update(vm.roupa)
                 .then(function () {
                     vm.roupa = null;
@@ -77,6 +87,7 @@
         }
 
         function editRoupa(elem){
+           elem.r.dataEntrada = new Date(elem.r.dataEntrada);
            vm.roupa = elem.r;
            $("#modalNovoItem").modal("show");
         }
@@ -84,6 +95,10 @@
         function addRoupa(){
             vm.roupa = null;
          }
+
+         function contaisTerm(roupaParam) {
+            return roupaParam.nome.toUpperCase().includes(vm.searchTerm.toUpperCase());
+          }
 
     }
 

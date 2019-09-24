@@ -7,9 +7,9 @@
     <div class="col-sm-8">
         <div class="form-group">
             <div class="input-group">
-                <input type="email" class="form-control" placeholder="Pesquisar por nome" id="email">
+                <input type="text" ng-model="vm.searchTerm" class="form-control" placeholder="Pesquisar por nome" id="searchTerm">
                 <span class="input-group-btn">
-                    <button class="btn">Pesquisar</button>
+                    <button class="btn" ng-click="vm.searchRoupas()">Pesquisar</button>
                 </span>
             </div>
         </div>
@@ -28,7 +28,7 @@
                     <div>
                         <div class="col-sm-4"><b>Código: </b>{{ r.codigo }}</div>
                         <div class="col-sm-4"><b>Nome: </b>{{ r.nome }}</div>
-                        <div class="col-sm-4"><b>Data de Entrada: </b>{{ r.dataEntrada }}</div>
+                        <div class="col-sm-4"><b>Data de Entrada: </b>{{ r.dataEntrada | date:'dd/MM/yyyy'}}</div>
                         <div class="col-sm-4"><b>Tipo: </b>{{ r.tipo }}</div>
                         <div class="col-sm-4"><b>Marca: </b>{{ r.marca }}</div>
                         <div class="col-sm-4"><b>Tamanho: </b>{{ r.tamanho }}</div>
@@ -74,18 +74,18 @@
                     <div class="form-group">
                         <label for="tipo">Tipo</label>
                         <select name="tipo" id="tipo" class="form-control" ng-model="vm.roupa.tipo">
-                            <option value="0">Selecione...</option>
-                            <option value="1">Vestido</option>
-                            <option value="2">Saia</option>
-                            <option value="3">Conjunto</option>
+                            <option value="Camisa">Camisa</option>
+                            <option value="Calça">Calça</option>
+                            <option value="Vestido">Vestido</option>
+                            <option value="Saia">Saia</option>
+                            <option value="Conjunto">Conjunto</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="marca">Marca</label>
                         <select name="marca" id="marca" class="form-control" ng-model="vm.roupa.marca">
-                            <option value="0">Selecione...</option>
-                            <option value="1">Fórum</option>
-                            <option value="2">Namine</option>
+                            <option value="Fórum">Fórum</option>
+                            <option value="Namine">Namine</option>
                         </select>
                     </div>
                     <div class="form-group">
