@@ -93,7 +93,7 @@
         }
 
         function addRoupa(){
-            vm.roupa = null;
+            vm.roupa = { cor: "#000000"};
          }
 
          function contaisTerm(roupaParam) {
